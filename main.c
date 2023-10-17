@@ -48,5 +48,8 @@ int if_empty(char *line)
  */
 int main(int argc, char *argv[])
 {
+    state.stack = NULL;
+    state.counter = 0;
+    state.buffer = NULL;
     
 }
