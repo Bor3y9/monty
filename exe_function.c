@@ -58,6 +58,8 @@ void select_function(char *opcode)
 		{"nop", nop},
 		{"sub", sub},
 		{"div", _div},
+		{"mul", mul},
+		{"mod", mod},
 		{NULL, NULL}
 	};
 
