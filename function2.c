@@ -55,5 +55,33 @@ void sub(stack_t **stack, unsigned int line_counter)
     pop(stack, line_counter);
     (*stack)->n = sub;
 }
+/**
+ * _div - divides the second top element of the stack by the top element
+ * @stack: pointer to the head of the stack
+ * @line_counter: line number of the opcode
+ * Return: void
+ */
+void _div(stack_t **stack, unsigned int line_counter)
+{
+    stack_t *tmp = *stack;
+    int div;
+    (void)line_counter;
+
+    if (tmp == NULL || tmp->next == NULL)
+    {
+        fprintf(stderr, "L%d: can't div, stack too short\n", line_counter);
+        free_all(*stack, state.arg);
+        exit(EXIT_FAILURE);
+    }
+    if (tmp->n == 0)
+    {
+        fprintf(stderr, "L%d: division by zero\n", line_counter);
+        free_all(*stack, state.arg);
+        exit(EXIT_FAILURE);
+    }
+    div = (tmp->next)->n / tmp->n;
+    pop(stack, line_counter);
+    (*stack)->n = div;
+}
 
 
