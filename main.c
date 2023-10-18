@@ -13,7 +13,7 @@ char *readline(void)
 	size_t len = 0;
 	ssize_t read;
 
-	read = getline(&line, &len, stdin);
+	read = getline(&line, &len, state.file);
 	if (read == -1)
 	{
 		free(line);
