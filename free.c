@@ -31,3 +31,17 @@ void free_buffer(char **buffer)
 		free(buffer[i]);
 	free(buffer);
 }
+
+/**
+ * free_all - frees the stack and the buffer
+ * @stack: pointer to the head of the stack
+ * @buffer: buffer to free
+ * Return: void
+ */
+void free_all(stack_t *stack, char **buffer)
+{
+	free_buffer(buffer);
+	free_stack(stack);
+	fclose(state.file);
+}
+

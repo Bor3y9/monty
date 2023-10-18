@@ -15,12 +15,14 @@ void push(stack_t **stack, unsigned int line_counter)
 	if (state.arg[1] == NULL || not_a_number(state.arg[1]))
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_counter);
+		free_all(*stack, state.buffer);
 		exit(EXIT_FAILURE);
 	}
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
+		free_all(*stack, state.buffer);
 		exit(EXIT_FAILURE);
 	}
 
@@ -61,6 +63,7 @@ void pint(stack_t **stack, unsigned int line_counter)
 	if (tmp == NULL)
 	{
 		fprintf(stderr, "L%d: can't pint, stack empty\n", line_counter);
+		free_all(*stack, state.buffer);
 		exit(EXIT_FAILURE);
 	}
 	printf("%d\n", tmp->n);
@@ -79,6 +82,7 @@ void pop(stack_t **stack, unsigned int line_counter)
 	if (*stack == NULL)
 	{
 		fprintf(stderr, "L%d: can't pop an empty stack\n", line_counter);
+		free_all(*stack, state.buffer);
 		exit(EXIT_FAILURE);
 	}
 	tmp = *stack;
@@ -99,6 +103,7 @@ void swap(stack_t **stack, unsigned int line_counter)
 	if (tmp == NULL || tmp->next == NULL)
 	{
 		fprintf(stderr, "L%d: can't swap, stack too short\n", line_counter);
+		free_all(*stack, state.buffer);
 		exit(EXIT_FAILURE);
 	}
 	tmp_n = tmp->n;
