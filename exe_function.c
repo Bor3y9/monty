@@ -73,10 +73,9 @@ void select_function(char *opcode)
 		{
 			opcodes[i].f(&state.stack, state.counter);
 			test = 1;
-			break;
 		}
 	}
-	if (test == 0)
+	if (test == 0 && opcodes[i].opcode == NULL)
 	{
 		fprintf(stderr, "L%d: unknown instruction %s\n", state.counter, opcode);
 		exit(EXIT_FAILURE);

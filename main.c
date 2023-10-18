@@ -84,7 +84,7 @@ int main(int argc, char *argv[])
 		state.arg = _getargs(state.buffer);
 		free(state.buffer);
 		select_function(state.arg[0]);
-		free(state.arg);
+		free_buffer(state.arg);
 	}
 	fclose(state.file);
 	free_stack(state.stack);
