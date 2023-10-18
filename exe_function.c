@@ -46,39 +46,57 @@ char **_getargs(char *line)
 
 void select_function(char *opcode)
 {
-    int i, test = 0;
+	int i, test = 0;
 
-    instruction_t opcodes[] = {
-        {"push", push},
-        {"pall", pall},
-        {"pint", pint},
-        {"pop", pop},
-        {"swap", swap},
-        {"add", add},
-        {"nop", nop},
-        {"sub", sub},
-        {"div", div},
-        {"mul", mul},
-        {"mod", mod},
-        {"pchar", pchar},
-        {"pstr", pstr},
-        {"rotl", rotl},
-        {"rotr", rotr},
-        {NULL, NULL}
-    };
+	instruction_t opcodes[] = {
+		{"push", push},
+		{"pall", pall},
+		{"pint", pint},
+		{"pop", pop},
+		{"swap", swap},
+		{"add", add},
+		{"nop", nop},
+		{"sub", sub},
+		{"div", div},
+		{"mul", mul},
+		{"mod", mod},
+		{"pchar", pchar},
+		{"pstr", pstr},
+		{"rotl", rotl},
+		{"rotr", rotr},
+		{NULL, NULL}
+	};
 
-    for (i = 0; opcodes[i].opcode != NULL; i++)
-    {
-        if (_strcmp(opcode, opcodes[i].opcode) == 0)
-        {
-            opcodes[i].f(&state.stack, state.counter);
-            test = 1;
-            break;
-        }
-    }
-    if (test == 0)
-    {
-        fprintf(stderr, "L%d: unknown instruction %s\n", state.counter, opcode);
-        exit(EXIT_FAILURE);
-    }
+	for (i = 0; opcodes[i].opcode != NULL; i++)
+	{
+		if (strcmp(opcode, opcodes[i].opcode) == 0)
+		{
+			opcodes[i].f(&state.stack, state.counter);
+			test = 1;
+			break;
+		}
+	}
+	if (test == 0)
+	{
+		fprintf(stderr, "L%d: unknown instruction %s\n", state.counter, opcode);
+		exit(EXIT_FAILURE);
+	}
+}
+/**
+ * not_a_number - checks if a string is not a number
+ * @s: string to check
+ * Return: 0 if it is a number, 1 otherwise
+ */
+int not_a_number(char *s)
+{
+	int i;
+
+	for (i = 0; s[i]; i++)
+		if (s[i] < '0' || s[i] > '9')
+		{
+			if (i == 0 && s[0] == '-')
+				continue;
+			return (1);
+		}
+	return (0);
 }
