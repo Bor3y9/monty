@@ -69,7 +69,9 @@ char *readline(void);
 int if_empty(char *line);
 void select_function(char *opcode);
 int not_a_number(char *s);
-
+char *_strdup(char *str);
+ssize_t getline(char **lineptr, size_t *n, FILE *stream);
+char *strtok(char *str, const char *delim);
 
 /*operation*/
 void push(stack_t **stack, unsigned int line_number);
@@ -92,5 +94,6 @@ void rotr(stack_t **stack, unsigned int line_number);
 
 void free_stack(stack_t *stack);
 void free_buffer(char **buffer);
+void free_all(stack_t *stack, char **buffer);
 
 #endif

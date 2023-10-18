@@ -1,5 +1,6 @@
 #include "monty.h"
 
+state_info state = init_state_info;
 
 /**
  * readline - reads lines from a file
@@ -49,7 +50,6 @@ int if_empty(char *line)
  */
 int main(int argc, char *argv[])
 {
-	state_info state = init_state_info;
 
 	state.stack = NULL;
 	state.counter = 0;

@@ -10,7 +10,7 @@ char **_getargs(char *line)
 	char **args = NULL, *token, *tmp, *tmp_token;
 	int size = 0, i;
 
-	tmp = strdup(line);
+	tmp = _strdup(line);
 	if (tmp == NULL)
 		return (NULL);
 	tmp_token = strtok(tmp, " \t\n");
@@ -26,7 +26,7 @@ char **_getargs(char *line)
 	for (i = 0; i < size - 1; i++)
 	{
 		token = strtok((i ? NULL : line), " \t\n");
-		args[i] = strdup(token);
+		args[i] = _strdup(token);
 		if (args[i] == NULL)
 		{
 			for (i--; i >= 0; i--)
@@ -56,14 +56,14 @@ void select_function(char *opcode)
 		{"swap", swap},
 		{"add", add},
 		{"nop", nop},
-		{"sub", sub},
+		/*{"sub", sub},
 		{"div", _div},
 		{"mul", mul},
 		{"mod", mod},
 		{"pchar", pchar},
 		{"pstr", pstr},
 		{"rotl", rotl},
-		{"rotr", rotr},
+		{"rotr", rotr},*/
 		{NULL, NULL}
 	};
 
