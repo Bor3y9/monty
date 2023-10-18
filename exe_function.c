@@ -56,6 +56,8 @@ void select_function(char *opcode)
 		{"swap", swap},
 		{"add", add},
 		{"nop", nop},
+		{"sub", sub},
+		{"div", _div},
 		{NULL, NULL}
 	};
 
