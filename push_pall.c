@@ -39,10 +39,9 @@ void push(stack_t **stack, unsigned int line_counter)
 */
 void pall(stack_t **stack, unsigned int line_counter)
 {
-	stack_t *tmp = NULL;
+	stack_t *tmp = *stack;
 	(void)line_counter;
 
-	tmp = *stack;
 	while (tmp != NULL)
 	{
 		printf("%d\n", tmp->n);
@@ -57,7 +56,7 @@ void pall(stack_t **stack, unsigned int line_counter)
 */
 void pint(stack_t **stack, unsigned int line_counter)
 {
-	stack_t *tmp = NULL;
+	stack_t *tmp = *stack;
 
 	if (tmp == NULL)
 	{
@@ -67,3 +66,42 @@ void pint(stack_t **stack, unsigned int line_counter)
 	printf("%d\n", tmp->n);
 }
 
+/**
+ * pop - implements the pop opcode
+ * @stack: pointer to the head of the stack
+ * @line_counter: line number of the opcode
+ * Return: void
+*/
+void pop(stack_t **stack, unsigned int line_counter)
+{
+	stack_t *tmp = NULL;
+
+	if (*stack == NULL)
+	{
+		fprintf(stderr, "L%d: can't pop an empty stack\n", line_counter);
+		exit(EXIT_FAILURE);
+	}
+	tmp = *stack;
+	*stack = (*stack)->next;
+	free(tmp);
+}
+/**
+ * swap - implements the swap opcode
+ * @stack: pointer to the head of the stack
+ * @line_counter: line number of the opcode
+ * Return: void
+*/
+void swap(stack_t **stack, unsigned int line_counter)
+{
+	stack_t *tmp = *stack;
+	int tmp_n;
+
+	if (tmp == NULL || tmp->next == NULL)
+	{
+		fprintf(stderr, "L%d: can't swap, stack too short\n", line_counter);
+		exit(EXIT_FAILURE);
+	}
+	tmp_n = tmp->n;
+	tmp->n = tmp->next->n;
+	tmp->next->n = tmp_n;
+}
