@@ -30,7 +30,7 @@ int if_empty(char *line)
 {
 	int i;
 
-	if (line[0] == '\0' || _strcmp(line, "\n") == 0)
+	if (line[0] == '\0' || strcmp(line, "\n") == 0)
 		return (1);
 
 	for (i = 0; line[i]; i++)

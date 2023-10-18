@@ -10,14 +10,14 @@ char **_getargs(char *line)
 	char **args = NULL, *token, *tmp, *tmp_token;
 	int size = 0, i;
 
-	tmp = _strdup(line);
+	tmp = strdup(line);
 	if (tmp == NULL)
 		return (NULL);
-	tmp_token = custom_strtok(tmp, " \t\n");
+	tmp_token = strtok(tmp, " \t\n");
 	while (tmp_token != NULL)
 	{
 		size++;
-		tmp_token = custom_strtok(NULL, " \t\n");
+		tmp_token = strtok(NULL, " \t\n");
 	}
 	free(tmp), size++;
 	args = (char **)malloc(sizeof(char *) * size);
@@ -25,8 +25,8 @@ char **_getargs(char *line)
 		return (NULL);
 	for (i = 0; i < size - 1; i++)
 	{
-		token = custom_strtok((i ? NULL : line), " \t\n");
-		args[i] = _strdup(token);
+		token = strtok((i ? NULL : line), " \t\n");
+		args[i] = strdup(token);
 		if (args[i] == NULL)
 		{
 			for (i--; i >= 0; i--)
@@ -57,7 +57,7 @@ void select_function(char *opcode)
 		{"add", add},
 		{"nop", nop},
 		{"sub", sub},
-		{"div", div},
+		{"div", _div},
 		{"mul", mul},
 		{"mod", mod},
 		{"pchar", pchar},

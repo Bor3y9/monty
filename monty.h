@@ -11,27 +11,6 @@
 
 #define init_state_info {NULL, NULL, NULL, NULL, 0}
 
-/**
- * struct state_s - struct for the state of the program
- * @stack: pointer to the top of the stack
- * @file: pointer to the file being read
- * @buffer: buffer for getline
- * @arg: array of arguments from getline
- * @counter: line number
- * Description: struct for the state of the program
- * for stack, queues, LIFO, FIFO
-*/
-
-typedef struct state_s
-{
-	stack_t *stack;
-	FILE *file;
-	char *buffer;
-	char **arg;
-	int counter;
-} state_info;
-
-extern state_info state;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -63,6 +42,28 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+/**
+ * struct state_s - struct for the state of the program
+ * @stack: pointer to the top of the stack
+ * @file: pointer to the file being read
+ * @buffer: buffer for getline
+ * @arg: array of arguments from getline
+ * @counter: line number
+ * Description: struct for the state of the program
+ * for stack, queues, LIFO, FIFO
+*/
+
+typedef struct state_s
+{
+	stack_t *stack;
+	FILE *file;
+	char *buffer;
+	char **arg;
+	int counter;
+} state_info;
+
+extern state_info state;
+
 char **_getargs(char *line);
 char *readline(void);
 int if_empty(char *line);
@@ -79,7 +80,7 @@ void swap(stack_t **stack, unsigned int line_number);
 void add(stack_t **stack, unsigned int line_number);
 void nop(stack_t **stack, unsigned int line_number);
 void sub(stack_t **stack, unsigned int line_number);
-void div(stack_t **stack, unsigned int line_number);
+void _div(stack_t **stack, unsigned int line_number);
 void mul(stack_t **stack, unsigned int line_number);
 void mod(stack_t **stack, unsigned int line_number);
 void pchar(stack_t **stack, unsigned int line_number);
