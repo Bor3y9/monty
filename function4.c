@@ -45,3 +45,31 @@ void pstr(stack_t **stack, unsigned int line_counter)
     }
     printf("\n");
 }
+
+/**
+ * rotl - rotates the stack to the top,
+ * @stack: pointer to the head of the stack
+ * @line_counter: line number of the opcode
+ * Return: void
+ */
+void rotl(stack_t **stack, unsigned int line_counter)
+{
+    stack_t *tmp = *stack, *aux;
+    (void)line_counter;
+
+    if (*stack == NULL || (*stack)->next == NULL)
+	{
+		return;
+	}
+    aux = (*stack)->next;
+	aux->prev = NULL;
+	while (tmp->next != NULL)
+	{
+		tmp = tmp->next;
+	}
+	tmp->next = *stack;
+	(*stack)->next = NULL;
+	(*stack)->prev = tmp;
+	(*stack) = aux;
+
+}
