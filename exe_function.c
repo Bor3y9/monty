@@ -60,6 +60,7 @@ void select_function(char *opcode)
 		{"div", _div},
 		{"mul", mul},
 		{"mod", mod},
+		{"pchar",pchar},
 		{NULL, NULL}
 	};
 
