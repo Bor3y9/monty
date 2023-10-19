@@ -83,7 +83,7 @@ int main(int argc, char *argv[])
 
 		state.arg = _getargs(state.buffer);
 		free(state.buffer);
-		if(state.arg[0][1] == '#')
+		if(state.arg[0][0] == '#')
 		{
 			free_buffer(state.arg);
 			continue;
